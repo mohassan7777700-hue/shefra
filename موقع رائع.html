@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SHEFRA ✨</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold1: #d4af37;
+      --gold2: #ffcc70;
+      --black: #0a0a0a;
+      --card-bg: rgba(255, 255, 255, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Cairo', sans-serif;
+      background: radial-gradient(circle at top right, #1a1a1a, #000);
+      color: #fff;
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* خلفية متحركة بالذهب */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 20% 30%, rgba(255,215,0,0.15), transparent 40%),
+                  radial-gradient(circle at 80% 70%, rgba(255,215,0,0.1), transparent 40%);
+      background-size: 300% 300%;
+      animation: shine 10s infinite alternate ease-in-out;
+      z-index: 0;
+    }
+
+    @keyframes shine {
+      from {background-position: 0% 50%;}
+      to {background-position: 100% 50%;}
+    }
+
+    header {
+      position: relative;
+      z-index: 2;
+      padding: 25px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      background: transparent;
+    }
+
+    header h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.8rem;
+      color: var(--gold1);
+      text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+      animation: glow 3s infinite alternate ease-in-out;
+      margin: 0;
+    }
+
+    @keyframes glow {
+      from {text-shadow: 0 0 10px rgba(255,215,0,0.4);}
+      to {text-shadow: 0 0 25px rgba(255,215,0,1);}
+    }
+
+    main {
+      position: relative;
+      z-index: 2;
+      padding: 40px 20px;
+      max-width: 1400px;
+      margin: auto;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 28px;
+      animation: fadeIn 1.5s ease;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      overflow: hidden;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.08);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(145deg, transparent, rgba(255, 215, 0, 0.05));
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
+    }
+
+    .image-wrap {
+      height: 220px;
+      background: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .card:hover img {
+      transform: scale(1.07);
+    }
+
+    .meta {
+      padding: 15px;
+      text-align: center;
+    }
+
+    .title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 5px;
+    }
+
+    .price {
+      font-size: 1rem;
+      color: var(--gold2);
+      font-weight: 800;
+    }
+
+    /* واتساب ثابت */
+    .whatsapp-btn {
+      position: fixed;
+      left: 25px;
+      bottom: 25px;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold1), var(--gold2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #000;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 15px;
+      box-shadow: 0 0 30px rgba(255,215,0,0.5);
+      transition: transform 0.25s ease;
+      z-index: 99;
+    }
+
+    .whatsapp-btn:hover {
+      transform: scale(1.1);
+    }
+
+    footer {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 25px;
+      color: var(--gold2);
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      margin-top: 50px;
+    }
+
+    footer .icons {
+      margin: 10px 0;
+    }
+
+    footer a {
+      color: var(--gold1);
+      margin: 0 10px;
+      font-size: 1.4rem;
+      text-decoration: none;
+      transition: opacity 0.3s;
+    }
+
+    footer a:hover {
+      opacity: 0.7;
+    }
+
+    /* Popup */
+    .popup {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.3s;
+      z-index: 200;
+    }
+
+    .popup.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .popup-content {
+      background: rgba(255,255,255,0.05);
+      border-radius: 20px;
+      padding: 20px;
+      text-align: center;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 0 30px rgba(255,215,0,0.2);
+      animation: fadeIn 0.4s ease;
+    }
+
+    .popup-content img {
+      width: 100%;
+      border-radius: 15px;
+      margin-bottom: 10px;
+    }
+
+    .popup-content button {
+      background: linear-gradient(90deg, var(--gold1), var(--gold2));
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      color: #000;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .popup-content button:hover {
+      transform: scale(1.07);
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>SHEFRA</h1>
+  </header>
+
+  <main>
+    <section class="grid" id="product-grid"></section>
+  </main>
+
+  <a href="https://wa.me/201091462051" target="_blank" class="whatsapp-btn">واتس</a>
+
+  <footer>
+    <div class="icons">
+      <a href="#"><i class="fab fa-whatsapp"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-facebook"></i></a>
+    </div>
+    © 2025 SHEFRA. All Rights Reserved
+  </footer>
+
+  <div class="popup" id="popup">
+    <div class="popup-content">
+      <img id="popup-img" src="" alt="صورة المنتج">
+      <h2 id="popup-title"></h2>
+      <button id="order-btn">طلب من خلال واتساب</button>
+    </div>
+  </div>
+
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script>
+    const PHONE_NUMBER = '201091462051';
+    const grid = document.getElementById('product-grid');
+    const popup = document.getElementById('popup');
+    const popupImg = document.getElementById('popup-img');
+    const popupTitle = document.getElementById('popup-title');
+    const orderBtn = document.getElementById('order-btn');
+
+    for (let i = 1; i <= 15; i++) {
+      const card = document.createElement('article');
+      card.className = 'card';
+      card.innerHTML = `
+        <div class="image-wrap">
+          <div class="placeholder" style="color:#777;">صورة المنتج ${i}</div>
+          <img style="display:none" alt="صورة المنتج ${i}">
+        </div>
+        <div class="meta">
+          <div class="title" contenteditable="true">اسم المنتج ${i}</div>
+          <div class="price" contenteditable="true">$${(i*10).toFixed(2)}</div>
+          <label style="display:block;margin-top:8px;font-size:13px;opacity:.8">رفع صورة <input class="file-input" type="file" accept="image/*" style="display:none"></label>
+        </div>
+      `;
+      grid.appendChild(card);
+
+      const fileInput = card.querySelector('.file-input');
+      const img = card.querySelector('img');
+      const placeholder = card.querySelector('.placeholder');
+
+      fileInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if(!file) return;
+        const reader = new FileReader();
+        reader.onload = () => {
+          img.src = reader.result;
+          img.style.display = 'block';
+          placeholder.style.display = 'none';
+        };
+        reader.readAsDataURL(file);
+      });
+
+      card.addEventListener('click', () => {
+        const title = card.querySelector('.title').innerText;
+        if(!img.src) return;
+        popupImg.src = img.src;
+        popupTitle.textContent = title;
+        popup.classList.add('active');
+        orderBtn.onclick = () => {
+          const message = encodeURIComponent(`مرحباً، أود طلب المنتج: ${title}`);
+          window.open(`https://wa.me/${PHONE_NUMBER}?text=${message}`, '_blank');
+        };
+      });
+    }
+
+    popup.addEventListener('click', (e) => {
+      if(e.target === popup) popup.classList.remove('active');
+    });
+  </script>
+</body>
+</html>
+
+
